@@ -117,7 +117,7 @@ const Home = () => {
         </div>
       </nav>
 
-      <header className="bg-dark py-5">
+      <header className="bg-dark py-5 header-bg">
         <div className="container px-4 px-lg-5 my-5">
           <div className="text-center text-white">
             <h1 className="display-4 fw-bolder">Find Your People</h1>

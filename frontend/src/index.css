@@ -1,0 +1,8 @@
+.header-bg{
+    background-image: url('https://i.imgur.com/Mg8qgX3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /* Optional: Prevents the image from repeating */
+  }
+
+/* Change link during the actual project */
