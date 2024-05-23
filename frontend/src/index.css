@@ -15,7 +15,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index:1; /* Ensure it is behind the other content */
+  z-index:0; /* Ensure it is behind the other content */
 }
 
 header .container {
