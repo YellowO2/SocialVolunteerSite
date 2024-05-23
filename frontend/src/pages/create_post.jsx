@@ -1,21 +1,35 @@
 import React, { useState } from "react";
 import CustomEditor from "../components/custom_editor/custom_editor.jsx";
 import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  TextField,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Box,
+  Chip,
+  Typography,
+} from "@mui/material";
+import {
+  LocalizationProvider,
+  DatePicker,
+  TimePicker,
+} from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const tags = [
-  "Tag 1",
-  "Tag 2",
-  "Tag 3",
-  "Tag 4",
-  // Add more tags as needed
-];
+const tags = ["Tag 1", "Tag 2", "Tag 3", "Tag 4"];
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
-  //   const [images, setImages] = useState([]); // For optional images
-  const [community, setCommunity] = useState(""); // For selecting community
+  const [community, setCommunity] = useState("");
+  const [location, setLocation] = useState("");
+  const [eventDate, setEventDate] = useState(null);
+  const [eventTime, setEventTime] = useState(null);
+  const [numPeople, setNumPeople] = useState("");
 
   const navigate = useNavigate();
 
@@ -30,32 +44,26 @@ const CreatePost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Mock API call
     const newPost = {
       id: Date.now(),
       title,
       content,
       selectedTags,
-      //   images,
       community,
+      location,
+      date: eventDate,
+      time: eventTime,
+      numPeople,
       createdAt: new Date().toLocaleDateString(),
     };
 
-    // Replace this with actual API call
     console.log("New Post:", newPost);
-
-    // Redirect to the new post page
     navigate(`/post/${newPost.id}`);
     alert(
-      newPost.title +
-        "\n" +
-        newPost.content +
-        +"\n" +
-        newPost.selectedTags +
-        "\n" +
-        "We will send this to backend for actual"
+      `${newPost.title}\n${newPost.content}\n${newPost.selectedTags}\nLocation: ${newPost.location}\nDate: ${newPost.date}\nTime: ${newPost.time}\nNumber of People: ${newPost.numPeople}\nWe will send this to backend for actual`
     );
   };
+
   const toggleTag = (tag) => {
     if (selectedTags.includes(tag)) {
       setSelectedTags(
@@ -65,99 +73,148 @@ const CreatePost = () => {
       setSelectedTags([...selectedTags, tag]);
     }
   };
-
   return (
-    <div className="container mt-4">
-      <div className="d-flex justify-content-between mb-6">
-        <h1 className="text-2xl font-semibold">Create post</h1>
-      </div>
-      <div className="mb-6">
-        <div className="d-flex align-items-center space-x-2">
-          <button className="text-muted d-flex align-items-center space-x-1 btn btn-link">
-            <span>Community</span>
-            <i className="fas fa-caret-down"></i>
-          </button>
-        </div>
-      </div>
-      <div className="mb-6">
-        <div className="my-4 d-flex">
-          {/* <button className="text-primary font-semibold pb-2 border-bottom border-primary btn btn-link">
-            Text
-          </button>
-          <button className="text-muted pb-2 btn btn-link">
-            Images & Video
-          </button> */}
-          {/* <button className="text-muted pb-2 btn btn-link">Link</button>
-          <button className="text-muted pb-2 btn btn-link">Poll</button> */}
-          <h3>Title</h3>
-        </div>
-      </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Give it a title..."
-          className="form-control"
-          maxLength="300"
-          value={title}
-          onChange={handleTitleChange}
+    <Box
+      sx={{
+        p: 4,
+        bgcolor: "background.paper",
+        borderRadius: 1,
+        boxShadow: 3,
+        "& > *": {
+          mt: 2, // Adjust the margin-top as needed
+        },
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        Create Event
+      </Typography>
+
+      <Typography variant="h6" gutterBottom>
+        Title
+      </Typography>
+      <TextField
+        label="Title"
+        variant="outlined"
+        fullWidth
+        value={title}
+        onChange={handleTitleChange}
+        helperText={`${title.length}/300`}
+        margin="normal"
+      />
+
+      <Typography variant="h6" gutterBottom>
+        Location
+      </Typography>
+      <TextField
+        label="Location"
+        variant="outlined"
+        fullWidth
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+        margin="normal"
+      />
+
+      <Typography variant="h6" gutterBottom>
+        Event Date
+      </Typography>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+          label="Event Date"
+          value={eventDate}
+          onChange={(newValue) => setEventDate(newValue)}
+          renderInput={(params) => (
+            <TextField {...params} fullWidth margin="normal" />
+          )}
         />
-        <div className="text-end text-muted text-sm mt-1">
-          {title.length}/300
-        </div>
-      </div>
-      <div className="mb-4">
-        {/* Tag selector */}
-        <div className="mb-4 dropdown">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Add tags
-          </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {tags.map((tag, index) => (
-              <li key={index}>
-                <button
-                  className={`dropdown-item ${
-                    selectedTags.includes(tag) ? "active" : ""
-                  }`}
-                  type="button"
-                  onClick={() => toggleTag(tag)}
-                >
-                  {tag}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {/* Tag selector end */}
+      </LocalizationProvider>
 
-        {/* Selected tags */}
-        <div className="my-4 selected-tags">
-          {selectedTags.map((tag, index) => (
-            <span key={index} className="badge bg-primary me-2">
-              {tag}{" "}
-              <button
-                className="btn-close"
-                onClick={() => toggleTag(tag)}
-              ></button>
-            </span>
+      <Typography variant="h6" gutterBottom>
+        Event Time
+      </Typography>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <TimePicker
+          label="Event Time"
+          value={eventTime}
+          onChange={(newValue) => setEventTime(newValue)}
+          renderInput={(params) => (
+            <TextField {...params} fullWidth margin="normal" />
+          )}
+        />
+      </LocalizationProvider>
+
+      <Typography variant="h6" gutterBottom>
+        Number of People
+      </Typography>
+      <TextField
+        label="Number of People"
+        variant="outlined"
+        type="number"
+        fullWidth
+        value={numPeople}
+        onChange={(e) => setNumPeople(e.target.value)}
+        margin="normal"
+      />
+
+      <Typography variant="h6" gutterBottom>
+        Community
+      </Typography>
+      <FormControl fullWidth variant="outlined" margin="normal">
+        <InputLabel id="community-label">Community</InputLabel>
+        <Select
+          labelId="community-label"
+          value={community}
+          onChange={(e) => setCommunity(e.target.value)}
+          label="Community"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={"community1"}>Community 1</MenuItem>
+          <MenuItem value={"community2"}>Community 2</MenuItem>
+        </Select>
+      </FormControl>
+
+      <Typography variant="h6" gutterBottom>
+        Tags
+      </Typography>
+      <FormControl fullWidth variant="outlined" margin="normal">
+        <InputLabel id="tags-label">Tags</InputLabel>
+        <Select
+          labelId="tags-label"
+          multiple
+          value={selectedTags}
+          onChange={(e) => setSelectedTags(e.target.value)}
+          renderValue={(selected) => (
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
+          label="Tags"
+        >
+          {tags.map((tag) => (
+            <MenuItem key={tag} value={tag}>
+              {tag}
+            </MenuItem>
           ))}
-        </div>
+        </Select>
+      </FormControl>
 
-        <CustomEditor value={content} onChange={handleContentChange} />
+      <Typography variant="h6" gutterBottom>
+        Content
+      </Typography>
+      <CustomEditor value={content} onChange={handleContentChange} />
 
-        <div className="d-flex justify-content-end mt-2">
-          <button className="btn btn-light me-2">Save draft</button>
-          <button className="btn btn-primary" onClick={handleSubmit}>
-            Post
-          </button>
-        </div>
-      </div>
-    </div>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+        <Button variant="outlined" sx={{ mr: 2 }}>
+          Save draft
+        </Button>
+        <Button variant="contained" color="primary" onClick={handleSubmit}>
+          Post
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
