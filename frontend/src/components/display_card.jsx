@@ -33,7 +33,7 @@ const DisplayCard = ({ postData }) => {
     <Card
       variant="outlined"
       onClick={handleCardClick}
-      sx={{ width: 320, maxWidth: "100%", boxShadow: "lg", cursor: "pointer" }}
+      sx={{ maxWidth: 345, boxShadow: "lg", cursor: "pointer" }}
     >
       <CardHeader title={postData.title} />
 

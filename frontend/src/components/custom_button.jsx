@@ -12,11 +12,12 @@ function CustomButton({
   upvoteCount = null,
   handleClick = null,
 }) {
-  let buttonVariant, buttonText, icon, upvotes;
+  let buttonVariant, buttonText, icon, upvotes, color;
 
   if (buttonType === "upvote") {
     buttonVariant = "outlined";
-    icon = <ArrowUpwardIcon />;
+    color = "warning";
+    icon = <ArrowUpwardIcon color="warning" fontSize="large" />;
     buttonText = "Upvote";
     upvotes = <span>({upvoteCount})</span>;
   } else if (buttonType === "share") {
@@ -28,6 +29,7 @@ function CustomButton({
   return (
     <Button
       variant={buttonVariant}
+      color={color}
       startIcon={icon}
       onClick={handleClick}
       size="small"

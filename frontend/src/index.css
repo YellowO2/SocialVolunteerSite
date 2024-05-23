@@ -23,5 +23,13 @@ header .container {
   z-index: 1; /* Ensure the container content is above the background image */
 }
 
+.gradient-background {
+  background: linear-gradient(to right top, #ffecd2 0%, #fcb69f 100%);
+  height: 100vh; /* Adjust the height as needed */
+}
+
+body {
+  background-color: linear-gradient(to right top, #ffecd2 0%, #fcb69f 100%);
+}
 
 /* Change link during the actual project */

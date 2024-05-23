@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  Box,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const SearchForm = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,54 +22,59 @@ const SearchForm = ({ onSearch }) => {
   };
 
   return (
-    <div className="p-4 border-bottom ">
-      <form
-        className="row row-cols-lg-auto align-items-center mx-auto"
-        onSubmit={handleSubmit}
-      >
-        <div className="col-12">
-          <div className="input-group">
-            <i className="input-group-text fa-solid fa-magnifying-glass"></i>
-            <input
-              type="search"
-              className="form-control"
-              placeholder="Search for events"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <span className="input-group-text">From</span>
-            <input
-              type="date"
-              className="form-control"
-              value={fromDate}
-              onChange={(e) => setFromDate(e.target.value)}
-            />
-            <span className="input-group-text">To</span>
-            <input
-              type="date"
-              className="form-control"
-              value={toDate}
-              onChange={(e) => setToDate(e.target.value)}
-            />
+    <Box sx={{ p: 4, borderBottom: 1, borderColor: "divider" }}>
+      <form onSubmit={handleSubmit}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 2,
+            flexWrap: "wrap",
+          }}
+        >
+          <TextField
+            type="search"
+            label="Search for events"
+            variant="outlined"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: <SearchIcon />,
+            }}
+          />
+          <TextField
+            type="date"
+            label="From"
+            variant="outlined"
+            InputLabelProps={{ shrink: true }}
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+          />
+          <TextField
+            type="date"
+            label="To"
+            variant="outlined"
+            InputLabelProps={{ shrink: true }}
+            value={toDate}
+            onChange={(e) => setToDate(e.target.value)}
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Search
+          </Button>
+        </Box>
 
-            <button type="submit" className="btn btn-primary">
-              Search
-            </button>
-          </div>
-        </div>
-
-        <div className="col-12">
-          <select
-            className="form-select"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
-            <option value="recent">Recent</option>
-            <option value="upvotes">Most Upvotes</option>
-          </select>
-        </div>
+        <InputLabel>Sort By</InputLabel>
+        <Select
+          value={sortBy}
+          label="Sort By"
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <MenuItem value="recent">Recent</MenuItem>
+          <MenuItem value="upvotes">Most Upvotes</MenuItem>
+        </Select>
       </form>
-    </div>
+    </Box>
   );
 };
 

@@ -78,7 +78,7 @@ const CreatePost = () => {
     <Box
       sx={{
         p: 4,
-        bgcolor: "background.paper",
+        bgcolor: "background.gradient",
         borderRadius: 1,
         boxShadow: 3,
         "& > *": {
