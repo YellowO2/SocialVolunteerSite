@@ -67,7 +67,7 @@ const DisplayCard = ({ postData }) => {
 
 DisplayCard.propTypes = {
   postData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
