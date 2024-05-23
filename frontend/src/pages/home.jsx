@@ -13,7 +13,7 @@ const mockPostDataList = [
   {
     id: 2,
     title: "Cock Restoration",
-    description: "Help us restoring the local cock!",
+    description: "Help us restore the local cock!",
     image: "https://via.placeholder.com/150",
     upvotes: 10,
   },
