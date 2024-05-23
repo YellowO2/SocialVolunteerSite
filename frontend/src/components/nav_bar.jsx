@@ -43,8 +43,8 @@ function NavBar() {
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a className="dropdown-item" href="#!">
-                    ass
+                  <a className="dropdown-item" to="/profile">
+                    Profile
                   </a>
                 </li>
                 <li>
