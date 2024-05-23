@@ -73,6 +73,7 @@ const CreatePost = () => {
       setSelectedTags([...selectedTags, tag]);
     }
   };
+
   return (
     <Box
       sx={{

@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import Button from './Button.jsx';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CardActions,
+  Divider,
+  CardHeader,
+} from "@mui/material";
+import CustomButton from "./custom_button";
 
 const DisplayCard = ({ postData }) => {
   const navigate = useNavigate();
@@ -21,44 +30,44 @@ const DisplayCard = ({ postData }) => {
   };
 
   return (
-    <div className="col-md-6 mb-5">
-      <div
-        className="card"
-        onClick={handleCardClick}
-        style={{ cursor: "pointer" }}
-      >
-        {" "}
-        {/* Add onClick handler */}
-        <img
-          className="card-img-top"
-          src={postData.image}
-          alt={postData.title}
-          style={{ maxWidth: "100%" }}
+    <Card
+      variant="outlined"
+      onClick={handleCardClick}
+      sx={{ width: 320, maxWidth: "100%", boxShadow: "lg", cursor: "pointer" }}
+    >
+      <CardHeader title={postData.title} />
+
+      <CardMedia
+        component="img"
+        height="194"
+        image="/volunteer.png"
+        // image={postData.image}
+        alt="Paella dish"
+      />
+      <CardContent>
+        {/* <Typography variant="h5" component="div" fontWeight="bold">
+            {postData.author}
+          </Typography> */}
+
+        <Typography variant="body1" color="text.secondary">
+          {postData.description}
+        </Typography>
+      </CardContent>
+      <Divider inset="none" />
+      <CardActions>
+        <CustomButton
+          displayType="card"
+          buttonType="upvote"
+          upvoteCount={upvotes}
+          handleClick={handleUpvote}
         />
-        <div className="card-body p-4">
-          <div className="text-center">
-            <h5 className="fw-bolder">{postData.title}</h5>
-            <h5 className="fw-bolder">{postData.author}</h5>
-            <p className="card-text">{postData.description}</p>
-          </div>
-        </div>
-        <div className="card-footer pt-0 border-top-0 bg-transparent">
-          <div className="d-flex justify-content-between align-items-center">
-          <Button
-            displayType="card"
-            buttonType="upvote"
-            upvoteCount={upvotes}
-            handleClick={handleUpvote}
-          />
-          <Button
-            displayType="card"
-            buttonType="share"
-            handleClick={handleShare}
-          />
-          </div>
-        </div>
-      </div>
-    </div>
+        <CustomButton
+          displayType="card"
+          buttonType="share"
+          handleClick={handleShare}
+        />
+      </CardActions>
+    </Card>
   );
 };
 

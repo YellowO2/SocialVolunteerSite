@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../components/Button.jsx";
+import Button from "../components/custom_button.jsx";
 
 const Post = () => {
   const { id } = useParams();
@@ -49,31 +49,30 @@ const Post = () => {
     const [inputComment, setInputComment] = useState("");
 
     const handleSubmit = (event) => {
-        event.preventDefault;
-        const newComment = {
-          id: comments.length + 1,
-          author: "Random User",  // TODO: Replace with the actual user.
-          content: inputComment,
-          createdAt: new Date().toLocaleDateString()
-        };
+      event.preventDefault;
+      const newComment = {
+        id: comments.length + 1,
+        author: "Random User", // TODO: Replace with the actual user.
+        content: inputComment,
+        createdAt: new Date().toLocaleDateString(),
+      };
       setComments([...comments, newComment]); // TODO: Add into DB, not just update state.
     };
 
     return (
-        <form
-            className="form-outline mb-4"
-            onSubmit={handleSubmit}    
-        >
-          <input 
-            type="text"
-            value={inputComment}
-            onChange={(event) => { setInputComment(event.target.value) }}
-            className="form-control"
-            placeholder="Type a comment, and hit enter to submit."
-          />
-        </form>
+      <form className="form-outline mb-4" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={inputComment}
+          onChange={(event) => {
+            setInputComment(event.target.value);
+          }}
+          className="form-control"
+          placeholder="Type a comment, and hit enter to submit."
+        />
+      </form>
     );
-}
+  }
 
   return (
     <div className="container mt-4">
