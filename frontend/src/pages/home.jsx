@@ -117,16 +117,15 @@ const Home = () => {
         </div>
       </nav>
 
-      <header className="bg-dark py-5 header-bg">
-        <div className="container px-4 px-lg-5 my-5">
-          <div className="text-center text-white">
-            <h1 className="display-4 fw-bolder">Find Your People</h1>
-            <p className="lead fw-normal text-white-50 mb-0">
-              And suck together
-            </p>
-          </div>
+     <header className="bg-dark py-5 header-bg">
+      <div className="container px-4 px-lg-5 my-5">
+        <div className="text-center text-white">
+          <h1 className="display-4 fw-bolder">Find Your People</h1>
+          <p className="lead fw-normal text-white-50 mb-0">And suck together</p>
         </div>
-      </header>
+      </div>
+     </header>
+
 
       <SearchBar />
 

@@ -1,8 +1,26 @@
-.header-bg{
-    background-image: url('https://i.imgur.com/Mg8qgX3.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; /* Optional: Prevents the image from repeating */
-  }
+.header-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-bg::before {
+  content: "";
+  background-image: url('https://i.imgur.com/Mg8qgX3.jpeg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.6; /* Adjust the opacity of the background image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index:1; /* Ensure it is behind the other content */
+}
+
+header .container {
+  position: relative;
+  z-index: 1; /* Ensure the container content is above the background image */
+}
 
 /* Change link during the actual project */
