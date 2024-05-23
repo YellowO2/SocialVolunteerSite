@@ -3,11 +3,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Post from "./pages/post";
 import CreatePost from "./pages/create_post";
+<<<<<<< HEAD
 import NavBar from "./components/nav_bar/nav_bar";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+=======
+import NavBar from "./components/nav_bar";
+import Profile from "./pages/profile";
+>>>>>>> origin/master
 
 const customTheme = createTheme({
   palette: {
@@ -53,6 +58,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/post/:id" element={<Post />} />
             <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/profile" element={<Profile />}/>
           </Routes>
           <footer className="py-5 bg-dark">
             <div className="container">
