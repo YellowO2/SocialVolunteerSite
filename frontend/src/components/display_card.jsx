@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import Button from './Button.jsx';
 
 const DisplayCard = ({ postData }) => {
   const navigate = useNavigate();
@@ -43,21 +44,17 @@ const DisplayCard = ({ postData }) => {
         </div>
         <div className="card-footer pt-0 border-top-0 bg-transparent">
           <div className="d-flex justify-content-between align-items-center">
-            <button
-              className="btn btn-light mt-auto d-flex align-items-center"
-              onClick={handleUpvote}
-            >
-              <i className="fas fa-arrow-up mr-2"></i>
-              <span>Upvote</span>
-              <span className="ml-2"> {upvotes}</span>
-            </button>
-            <button
-              className="btn btn-light mt-auto d-flex align-items-center"
-              onClick={handleShare}
-            >
-              <i className="fas fa-share-alt mr-2"></i>
-              <span>Share</span>
-            </button>
+          <Button
+            displayType="card"
+            buttonType="upvote"
+            upvoteCount={upvotes}
+            handleClick={handleUpvote}
+          />
+          <Button
+            displayType="card"
+            buttonType="share"
+            handleClick={handleShare}
+          />
           </div>
         </div>
       </div>
@@ -67,7 +64,7 @@ const DisplayCard = ({ postData }) => {
 
 DisplayCard.propTypes = {
   postData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
