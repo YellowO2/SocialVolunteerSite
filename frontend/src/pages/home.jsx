@@ -1,7 +1,8 @@
 import React from "react";
 import DisplayCard from "../components/display_card";
 import SearchBar from "../components/search_bar";
-import { Container, Typography, Grid } from "@mui/material";
+import { Container, Grid, Divider } from "@mui/material";
+import Hero from "../components/hero";
 
 // Mock data
 const mockPostDataList = [
@@ -45,27 +46,8 @@ const mockPostDataList = [
 const Home = () => {
   return (
     <>
-      <header className="bg-dark py-5 header-bg">
-        <Container sx={{ py: 5 }}>
-          <Typography
-            variant="h1"
-            align="center"
-            color="white"
-            fontWeight="bold"
-            gutterBottom
-          >
-            Find Your People
-          </Typography>
-          <Typography
-            variant="h4"
-            align="center"
-            color="white"
-            fontWeight="normal"
-          >
-            And suck together
-          </Typography>
-        </Container>
-      </header>
+      <Hero />
+      <Divider />
 
       <SearchBar />
 
