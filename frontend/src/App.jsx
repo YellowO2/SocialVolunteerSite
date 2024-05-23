@@ -5,12 +5,14 @@ import Post from "./pages/post";
 // import About from './pages/About';
 // import Contact from './pages/Contact';
 import CreatePost from "./pages/create_post";
+import NavBar from "./components/nav_bar";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/post/:id" element={<Post />} />
