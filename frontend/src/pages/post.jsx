@@ -26,13 +26,13 @@ const Post = () => {
           id: 1,
           author: "User1",
           content: "Great post!",
-          createdAt: "2024-05-01",
+          createdAt: "01/05/2024",
         },
         {
           id: 2,
           author: "User2",
           content: "Thanks for sharing!",
-          createdAt: "2024-05-02",
+          createdAt: "02/05/2024",
         },
       ];
       setComments(commentsData);
@@ -44,6 +44,36 @@ const Post = () => {
   if (!post) {
     return <div>Loading...</div>;
   }
+
+  function CommentBox() {
+    const [inputComment, setInputComment] = useState("");
+
+    const handleSubmit = (event) => {
+        event.preventDefault;
+        const newComment = {
+          id: comments.length + 1,
+          author: "Random User",  // TODO: Replace with the actual user.
+          content: inputComment,
+          createdAt: new Date().toLocaleDateString()
+        };
+      setComments([...comments, newComment]); // TODO: Add into DB, not just update state.
+    };
+
+    return (
+        <form
+            className="form-outline mb-4"
+            onSubmit={handleSubmit}    
+        >
+          <input 
+            type="text"
+            value={inputComment}
+            onChange={(event) => { setInputComment(event.target.value) }}
+            className="form-control"
+            placeholder="Type a comment, and hit enter to submit."
+          />
+        </form>
+    );
+}
 
   return (
     <div className="container mt-4">
@@ -70,6 +100,7 @@ const Post = () => {
       </div>
       <div>
         <h4>Comments</h4>
+        <CommentBox />
         {comments.map((comment) => (
           <div key={comment.id} className="card mb-3">
             <div className="card-body">
