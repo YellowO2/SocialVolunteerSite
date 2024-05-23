@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../components/Button.jsx"
+import Button from "../components/Button.jsx";
 
 const Post = () => {
   const { id } = useParams();
@@ -92,10 +92,7 @@ const Post = () => {
             upvoteCount={post.upvotes}
             handleClick={() => setPost({ ...post, upvotes: post.upvotes + 1 })}
           />
-          <Button
-            displayType="post"
-            buttonType="share"
-          />
+          <Button displayType="post" buttonType="share" />
         </div>
       </div>
       <div>
