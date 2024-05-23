@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Button from "../components/Button.jsx"
 
 const Post = () => {
   const { id } = useParams();
@@ -55,17 +56,16 @@ const Post = () => {
           <p className="card-text">{post.content}</p>
         </div>
         <div className="card-body">
-          <button className="card-link btn btn-outline-dark align-items-center">
-            <i className="fas fa-share-alt mr-2"></i>
-            Share
-          </button>
-          <button
-            className="card-link btn btn-outline-dark align-items-center"
-            onClick={() => setPost({ ...post, upvotes: post.upvotes + 1 })}
-          >
-            <i className="fas fa-arrow-up mr-2"></i>
-            Upvote <span className="ml-2">{post.upvotes}</span>
-          </button>
+          <Button
+            displayType="post"
+            buttonType="upvote"
+            upvoteCount={post.upvotes}
+            handleClick={() => setPost({ ...post, upvotes: post.upvotes + 1 })}
+          />
+          <Button
+            displayType="post"
+            buttonType="share"
+          />
         </div>
       </div>
       <div>
