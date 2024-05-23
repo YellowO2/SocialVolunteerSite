@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import Box from "@mui/material/Box";
@@ -21,6 +22,7 @@ const logoStyle = {
 
 function NavBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
+  const location = useLocation();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -40,10 +42,12 @@ function NavBar({ mode, toggleColorMode }) {
     }
   };
 
+  const isHomePage = location.pathname === "/home";
+
   return (
-    <div>
+    <Box>
       <AppBar
-        position="fixed"
+        position={isHomePage ? "fixed" : "static"}
         sx={{
           boxShadow: 0,
           bgcolor: "transparent",
@@ -122,7 +126,7 @@ function NavBar({ mode, toggleColorMode }) {
                   sx={{ py: "6px", px: "12px" }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Highlights
+                    Communities
                   </Typography>
                 </MenuItem>
                 <MenuItem
@@ -130,7 +134,7 @@ function NavBar({ mode, toggleColorMode }) {
                   sx={{ py: "6px", px: "12px" }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Pricing
+                    About
                   </Typography>
                 </MenuItem>
                 <MenuItem
@@ -151,6 +155,9 @@ function NavBar({ mode, toggleColorMode }) {
               }}
             >
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+              <Button color="inherit" component={Link} to="/create-post">
+                + Create Post
+              </Button>
               <Button
                 color="primary"
                 variant="text"
@@ -250,7 +257,7 @@ function NavBar({ mode, toggleColorMode }) {
           </Toolbar>
         </Container>
       </AppBar>
-    </div>
+    </Box>
   );
 }
 

@@ -20,40 +20,13 @@ export default function Hero() {
             : `linear-gradient(#02294F, ${alpha("#090E10", 0.0)})`,
         backgroundSize: "100% 20%",
         backgroundRepeat: "no-repeat",
+
+        // backgroundImage: `url(/volunteer.png)`,
+        // backgroundSize: "cover",
+        // backgroundRepeat: "no-repeat",
+        // backgroundPosition: "center",
       })}
     >
-      <Paper
-        sx={{
-          position: "relative",
-          backgroundColor: "grey.800",
-          color: "#fff",
-          mb: 4,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          //   backgroundImage: `url(${post.image})`,
-          backgroundImage: "/volunteer",
-        }}
-      >
-        {
-          <img
-            style={{ display: "none" }}
-            // src={post.image}
-            src="/volunteer"
-            // alt={post.imageText}
-          />
-        }
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            backgroundColor: "rgba(0,0,0,.3)",
-          }}
-        />
-      </Paper>
       <Container
         sx={{
           display: "flex",
