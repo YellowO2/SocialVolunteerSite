@@ -12,6 +12,14 @@ import {
 import ShareIcon from "@mui/icons-material/Share";
 import CustomButton from "../components/custom_button";
 
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
 const Post = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
@@ -27,7 +35,7 @@ const Post = () => {
         content: `This is the content of post ${id}. We will fetch the content from back end using the id in url for actual work.
          \nufosfnsofnsfiodnsfiosfnsdiofndsfodsfnisofnsidfndsofnsfnosnfosnfosdnfodns`,
         upvotes: Math.floor(Math.random() * 100),
-        createdAt: new Date().toLocaleDateString(),
+        createdAt: formatDate(new Date()),
       };
       setPost(postData);
 
@@ -36,13 +44,13 @@ const Post = () => {
           id: 1,
           author: "User1",
           content: "Great post!",
-          createdAt: "01/05/2024",
+          createdAt: "2024-05-01",
         },
         {
           id: 2,
           author: "User2",
           content: "Thanks for sharing!",
-          createdAt: "02/05/2024",
+          createdAt: "2024-05-02",
         },
       ];
       setComments(commentsData);
@@ -64,7 +72,7 @@ const Post = () => {
         id: comments.length + 1,
         author: "Random User", // TODO: Replace with the actual user.
         content: inputComment,
-        createdAt: new Date().toLocaleDateString(),
+        createdAt: formatDate(new Date()),
       };
       setComments([...comments, newComment]); // TODO: Add into DB, not just update state.
     };
