@@ -10,6 +10,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Profile from "./pages/profile";
 import SignUp from "./pages/signup";
+import Signin from "./pages/signin";
+
 
 const customTheme = createTheme({
   palette: {
@@ -57,6 +59,7 @@ function App() {
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<Signin />} />
           </Routes>
           <footer className="py-5 bg-dark">
             <div className="container">
