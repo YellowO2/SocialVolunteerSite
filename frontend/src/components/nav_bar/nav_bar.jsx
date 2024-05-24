@@ -162,9 +162,7 @@ function NavBar({ mode, toggleColorMode }) {
                 color="primary"
                 variant="text"
                 size="small"
-                component="a"
-                href="/material-ui/getting-started/templates/sign-in/"
-                target="_blank"
+
               >
                 Sign in
               </Button>
@@ -172,9 +170,7 @@ function NavBar({ mode, toggleColorMode }) {
                 color="primary"
                 variant="contained"
                 size="small"
-                component="a"
-                href="/material-ui/getting-started/templates/sign-up/"
-                target="_blank"
+                component={Link} to="/signup"
               >
                 Sign up
               </Button>
