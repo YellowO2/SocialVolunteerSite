@@ -52,6 +52,9 @@ const DisplayCard = ({ postData }) => {
         <Typography variant="body1" color="text.secondary">
           {postData.description}
         </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Created On: {postData.createdOn}
+        </Typography>
       </CardContent>
       <Divider inset="none" />
       <CardActions>
