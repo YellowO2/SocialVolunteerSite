@@ -34,8 +34,7 @@ function CustomButton({
       onClick={handleClick}
       size="small"
     >
-      {buttonText}
-      {upvotes}
+      {buttonText}&nbsp;{upvotes}
     </Button>
   );
 }
