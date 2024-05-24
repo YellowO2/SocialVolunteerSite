@@ -10,15 +10,18 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({ onSearch, onSortChange, sortBy }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [sortBy, setSortBy] = useState("recent");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch({ searchTerm, fromDate, toDate, sortBy });
+  };
+
+  const handleSortChange = (e) => {
+    onSortChange(e.target.value);
   };
 
   return (
@@ -71,7 +74,7 @@ const SearchForm = ({ onSearch }) => {
         <Select
           value={sortBy}
           label="Sort By"
-          onChange={(e) => setSortBy(e.target.value)}
+          onChange={handleSortChange}
         >
           <MenuItem value="recent">Recent</MenuItem>
           <MenuItem value="upvotes">Most Upvotes</MenuItem>
