@@ -9,8 +9,8 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ShareIcon from "@mui/icons-material/Share";
+import CustomButton from "../components/custom_button";
 
 const Post = () => {
   const { id } = useParams();
@@ -96,16 +96,16 @@ const Post = () => {
             {post.content}
           </Typography>
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Button
-              variant="contained"
-              startIcon={<ThumbUpIcon />}
-              onClick={() => setPost({ ...post, upvotes: post.upvotes + 1 })}
-            >
-              Upvote {post.upvotes}
-            </Button>
-            <Button variant="outlined" startIcon={<ShareIcon />}>
-              Share
-            </Button>
+            <CustomButton
+              displayType="post"
+              buttonType="upvote"
+              upvoteCount={post.upvotes}
+              handleClick={() => setPost({ ...post, upvotes: post.upvotes + 1 })}
+            />
+            <CustomButton
+              displayType="post"
+              buttonType="share"
+            />
           </Box>
         </CardContent>
       </Card>
