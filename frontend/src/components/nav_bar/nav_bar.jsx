@@ -162,7 +162,7 @@ function NavBar({ mode, toggleColorMode }) {
                 color="primary"
                 variant="text"
                 size="small"
-
+                component={Link} to="/signin"
               >
                 Sign in
               </Button>
