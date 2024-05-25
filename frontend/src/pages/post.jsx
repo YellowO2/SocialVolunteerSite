@@ -74,7 +74,7 @@ const Post = () => {
         content: inputComment,
         createdAt: formatDate(new Date()),
       };
-      setComments([...comments, newComment]); // TODO: Add into DB, not just update state.
+      setComments(prevComments => ([...prevComments, newComment])); // TODO: Add into DB, not just update state.
     };
 
     return (

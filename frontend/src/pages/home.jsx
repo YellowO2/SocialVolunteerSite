@@ -11,7 +11,7 @@ const mockPostDataList = [
     title: "Cleanup",
     description: "Join us for a cleanup event!",
     image: "https://via.placeholder.com/150",
-    upvotes: 100,
+    upvotes: 0,
     createdOn: '2024-05-01',
   },
   {
